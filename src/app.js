@@ -8,7 +8,6 @@ app.get('/', (req, res) => {
 
 export default app;
 
-
 // import express from 'express';
 // import helmet from 'helmet';
 // import morgan from 'morgan';
