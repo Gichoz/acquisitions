@@ -15,7 +15,6 @@ services:
       PARENT_BRANCH_ID: ${PARENT_BRANCH_ID:-main}
       DELETE_BRANCH: ${DELETE_BRANCH:-true}
     volumes:
-      # Persist branch metadata per git branch (optional)
       - ./.neon_local/:/tmp/.neon_local
       - ./.git/HEAD:/tmp/.git/HEAD:ro,consistent
     healthcheck:
@@ -45,11 +44,15 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-debug}
       PORT: ${PORT:-3000}
     volumes:
-      # Mount source code for development hot-reload
       - .:/app
       - /app/node_modules
-      # Mount logs directory
       - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-A", "Docker-HealthCheck", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
     depends_on:
       neon-local:
         condition: service_healthy
