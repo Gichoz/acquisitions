@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/Gichoz/acquisitions#readme",
   "dependencies": {
+    "@arcjet/inspect": "^1.11.0",
     "@arcjet/node": "^1.11.0",
     "@neondatabase/serverless": "^1.1.0",
     "bcrypt": "^6.0.0",
