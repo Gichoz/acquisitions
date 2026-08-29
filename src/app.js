@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(
   morgan('combined', {
-    stream: { write: message => logger.info(message.trim()) },
+    stream: { write: (message) => logger.info(message.trim()) },
   })
 );
 
@@ -26,7 +26,6 @@ app.use(securityMiddleware);
 
 app.get('/', (req, res) => {
   logger.info('Hello from Acquisitions!');
-
   res.status(200).send('Hello from Acquisitions!');
 });
 
@@ -45,15 +44,12 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 
+// 404 Handler for undefined routes
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-// Global error handler — must be last, and must keep all four params
-// (that's what makes Express treat it as an error handler rather than
-// regular middleware). This is what turns createError('User not found', 404)
-// and similar thrown errors into the correct HTTP status + message instead
-// of a generic 500.
+// Global Error Handler (must be last)
 app.use((err, req, res, _next) => {
   logger.error(err.stack || err.message || err);
 
