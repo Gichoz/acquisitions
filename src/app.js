@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-app.use(securityMiddleware);
+app.use((req, res, next) => securityMiddleware(req, res, next));
 
 app.get('/', (req, res) => {
   logger.info('Hello from Acquisitions!');

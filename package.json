@@ -16,7 +16,7 @@
     "db:studio": "drizzle-kit studio",
     "dev:docker": "powershell -ExecutionPolicy Bypass -File ./scripts/dev.ps1",
     "prod:docker": "powershell -ExecutionPolicy Bypass -File ./scripts/prod.ps1",
-    "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "imports": {
     "#config/*": "./src/config/*",
@@ -57,7 +57,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "@eslint/js": "^10.0.1",
+    "babel-jest": "^30.5.0",
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
     "drizzle-kit": "^0.31.10",
