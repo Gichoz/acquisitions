@@ -1,6 +1,16 @@
 import js from '@eslint/js';
 
 export default [
+  {
+    ignores: [
+      'node_modules/**',
+      'coverage/**',
+      'logs/**',
+      'drizzle/**',
+      'dist/**',
+      'babel.config.cjs',
+    ],
+  },
   js.configs.recommended,
   {
     languageOptions: {
@@ -46,8 +56,5 @@ export default [
         jest: 'readonly',
       },
     },
-  },
-  {
-    ignores: ['node_modules/**', 'coverage/**', 'logs/**', 'drizzle/**'],
   },
 ];
