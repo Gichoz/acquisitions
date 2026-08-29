@@ -24,7 +24,7 @@ const config = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: 'coverage',
+  coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -32,7 +32,7 @@ const config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'v8',
+  coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -99,14 +99,14 @@ const config = {
   // under --experimental-vm-modules, so we map each alias to its real path
   // under src/ explicitly instead.
   moduleNameMapper: {
-    '^#config/(.*)$': '<rootDir>/src/config/$1',
-    '^#controllers/(.*)$': '<rootDir>/src/controllers/$1',
-    '^#middleware/(.*)$': '<rootDir>/src/middleware/$1',
-    '^#routes/(.*)$': '<rootDir>/src/routes/$1',
-    '^#models/(.*)$': '<rootDir>/src/models/$1',
-    '^#services/(.*)$': '<rootDir>/src/services/$1',
-    '^#utils/(.*)$': '<rootDir>/src/utils/$1',
-    '^#validations/(.*)$': '<rootDir>/src/validations/$1',
+    "^#config/(.*)$": "<rootDir>/src/config/$1",
+    "^#controllers/(.*)$": "<rootDir>/src/controllers/$1",
+    "^#middleware/(.*)$": "<rootDir>/src/middleware/$1",
+    "^#routes/(.*)$": "<rootDir>/src/routes/$1",
+    "^#models/(.*)$": "<rootDir>/src/models/$1",
+    "^#services/(.*)$": "<rootDir>/src/services/$1",
+    "^#utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^#validations/(.*)$": "<rootDir>/src/validations/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -163,7 +163,7 @@ const config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -195,7 +195,7 @@ const config = {
   // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: ['/node_modules/(?!(@arcjet|arcjet|helmet)/)'],
+  transformIgnorePatterns: ["/node_modules/(?!(@arcjet|arcjet|helmet)/)"],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
