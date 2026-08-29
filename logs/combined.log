@@ -533,3 +533,5 @@
 {"level":"info","message":"User authenticated: admin@admin.pro (admin)","service":"acquisitions-api","timestamp":"2026-08-29T02:54:00.405Z"}
 {"level":"info","message":"Deleting user: 1","service":"acquisitions-api","timestamp":"2026-08-29T02:54:00.409Z"}
 {"level":"info","message":"User admin@jsmastery.pro deleted successfully","service":"acquisitions-api","timestamp":"2026-08-29T02:54:00.836Z"}
+{"level":"info","message":"User admin@jsmastery.pro deleted successfully","service":"acquisitions-api","timestamp":"2026-08-29T02:54:00.836Z"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [29/Aug/2026:02:54:00 +0000] \"DELETE /api/users/1 HTTP/1.1\" 200 115 \"-\" \"HTTPie\"","service":"acquisitions-api","timestamp":"2026-08-29T02:54:00.838Z"}
