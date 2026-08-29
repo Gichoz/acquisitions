@@ -16,7 +16,14 @@
     "db:studio": "drizzle-kit studio",
     "dev:docker": "powershell -ExecutionPolicy Bypass -File ./scripts/dev.ps1",
     "prod:docker": "powershell -ExecutionPolicy Bypass -File ./scripts/prod.ps1",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,json,md,yml,yaml}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "imports": {
     "#config/*": "./src/config/*",
@@ -67,7 +74,9 @@
     "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
+    "husky": "^9.1.7",
     "jest": "^30.5.0",
+    "lint-staged": "^17.4.1",
     "prettier": "^3.9.6",
     "supertest": "^7.2.2"
   },
