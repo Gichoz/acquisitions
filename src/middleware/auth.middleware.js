@@ -1,66 +1,74 @@
-// import logger from '#config/logger.js';
-// import { jwttoken } from '#utils/jwt.js';
+import logger from '#config/logger.js';
+import { jwttoken } from '#utils/jwt.js';
 
-// export const authenticateToken = (req, res, next) => {
-//   try {
-//     const token = req.cookies.token;
+export const authenticateToken = (req, res, next) => {
+  try {
+    const token =
+      req.cookies?.token || req.headers.authorization?.split(' ')[1];
 
-//     if (!token) {
-//       return res.status(401).json({
-//         error: 'Authentication required',
-//         message: 'No access token provided',
-//       });
-//     }
+    if (!token) {
+      return res.status(401).json({
+        error: 'Authentication required',
+        message: 'No access token provided',
+      });
+    }
 
-//     const decoded = jwttoken.verify(token);
-//     req.user = decoded;
+    const decoded = jwttoken.verify(token);
 
-//     logger.info(`User authenticated: ${decoded.email} (${decoded.role})`);
-//     next();
-//   } catch (e) {
-//     logger.error('Authentication error:', e);
+    // Normalize id property regardless of how JWT payload signed it (id, userId, sub)
+    const rawId = decoded.id ?? decoded.userId ?? decoded.sub;
 
-//     if (e.message === 'Failed to authenticate token') {
-//       return res.status(401).json({
-//         error: 'Authentication failed',
-//         message: 'Invalid or expired token',
-//       });
-//     }
+    req.user = {
+      ...decoded,
+      id: rawId ? Number(rawId) : undefined,
+    };
 
-//     return res.status(500).json({
-//       error: 'Internal server error',
-//       message: 'Error during authentication',
-//     });
-//   }
-// };
+    logger.info(`User authenticated: ${decoded.email} (${decoded.role})`);
+    next();
+  } catch (e) {
+    logger.error('Authentication error:', e);
 
-// export const requireRole = allowedRoles => {
-//   return (req, res, next) => {
-//     try {
-//       if (!req.user) {
-//         return res.status(401).json({
-//           error: 'Authentication required',
-//           message: 'User not authenticated',
-//         });
-//       }
+    if (e.message === 'Failed to authenticate token') {
+      return res.status(401).json({
+        error: 'Authentication failed',
+        message: 'Invalid or expired token',
+      });
+    }
 
-//       if (!allowedRoles.includes(req.user.role)) {
-//         logger.warn(
-//           `Access denied for user ${req.user.email} with role ${req.user.role}. Required: ${allowedRoles.join(', ')}`
-//         );
-//         return res.status(403).json({
-//           error: 'Access denied',
-//           message: 'Insufficient permissions',
-//         });
-//       }
+    return res.status(500).json({
+      error: 'Internal server error',
+      message: 'Error during authentication',
+    });
+  }
+};
 
-//       next();
-//     } catch (e) {
-//       logger.error('Role verification error:', e);
-//       return res.status(500).json({
-//         error: 'Internal server error',
-//         message: 'Error during role verification',
-//       });
-//     }
-//   };
-// };
+export const requireRole = (allowedRoles) => {
+  return (req, res, next) => {
+    try {
+      if (!req.user) {
+        return res.status(401).json({
+          error: 'Authentication required',
+          message: 'User not authenticated',
+        });
+      }
+
+      if (!allowedRoles.includes(req.user.role)) {
+        logger.warn(
+          `Access denied for user ${req.user.email} with role ${req.user.role}. Required: ${allowedRoles.join(', ')}`
+        );
+        return res.status(403).json({
+          error: 'Access denied',
+          message: 'Insufficient permissions',
+        });
+      }
+
+      next();
+    } catch (e) {
+      logger.error('Role verification error:', e);
+      return res.status(500).json({
+        error: 'Internal server error',
+        message: 'Error during role verification',
+      });
+    }
+  };
+};
