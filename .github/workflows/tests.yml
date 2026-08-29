@@ -12,7 +12,6 @@ jobs:
 
     env:
       NODE_ENV: test
-      NODE_OPTIONS: --experimental-vm-modules
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
