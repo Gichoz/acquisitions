@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
   {
@@ -30,10 +31,7 @@ export default [
       },
     },
     rules: {
-      indent: ["error", 2, { SwitchCase: 1 }],
       "linebreak-style": "off", // Disabled to prevent Windows CRLF conflicts
-      quotes: ["error", "single"],
-      semi: ["error", "always"],
       "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "no-console": "off",
       "prefer-const": "error",
@@ -57,4 +55,5 @@ export default [
       },
     },
   },
+  eslintConfigPrettier,
 ];
