@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
 import { db } from '#config/database.js';
 import { users } from '#models/user.model.js';
- 
-export const hashPassword = async (password) => {
+
+export const hashPassword = async password => {
   try {
     return await bcrypt.hash(password, 10);
   } catch (e) {
@@ -12,7 +12,7 @@ export const hashPassword = async (password) => {
     throw new Error('Error hashing', { cause: e });
   }
 };
- 
+
 export const comparePassword = async (password, hashedPassword) => {
   try {
     return await bcrypt.compare(password, hashedPassword);
@@ -21,15 +21,19 @@ export const comparePassword = async (password, hashedPassword) => {
     throw new Error('Error comparing password', { cause: e });
   }
 };
- 
+
 export const createUser = async ({ name, email, password, role = 'user' }) => {
   try {
-    const existingUser = await db.select().from(users).where(eq(users.email, email)).limit(1);
- 
+    const existingUser = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email))
+      .limit(1);
+
     if (existingUser.length > 0) throw new Error('User already exists');
- 
+
     const password_hash = await hashPassword(password);
- 
+
     const [newUser] = await db
       .insert(users)
       .values({ name, email, password: password_hash, role })
@@ -40,7 +44,7 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
         role: users.role,
         createdAt: users.createdAt,
       });
- 
+
     logger.info(`User ${newUser.email} created successfully`);
     return newUser;
   } catch (e) {
@@ -48,17 +52,24 @@ export const createUser = async ({ name, email, password, role = 'user' }) => {
     throw e;
   }
 };
- 
+
 export const authenticateUser = async ({ email, password }) => {
   try {
-    const [existingUser] = await db.select().from(users).where(eq(users.email, email)).limit(1);
- 
+    const [existingUser] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, email))
+      .limit(1);
+
     if (!existingUser) throw new Error('User not found');
- 
-    const isPasswordValid = await comparePassword(password, existingUser.password);
- 
+
+    const isPasswordValid = await comparePassword(
+      password,
+      existingUser.password
+    );
+
     if (!isPasswordValid) throw new Error('Invalid password');
- 
+
     logger.info(`User ${existingUser.email} authenticated successfully`);
     return {
       id: existingUser.id,

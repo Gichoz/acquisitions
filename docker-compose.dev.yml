@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Neon Local proxy for development
@@ -48,7 +48,15 @@ services:
       - /app/node_modules
       - ./logs:/app/logs
     healthcheck:
-      test: ["CMD", "curl", "-f", "-A", "Docker-HealthCheck", "http://localhost:3000/health"]
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "-A",
+          "Docker-HealthCheck",
+          "http://localhost:3000/health",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3

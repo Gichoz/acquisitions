@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(
   morgan('combined', {
-    stream: { write: (message) => logger.info(message.trim()) },
+    stream: { write: message => logger.info(message.trim()) },
   })
 );
 
