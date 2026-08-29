@@ -2,4 +2,4 @@ Aquisition
 API
 Production
 Backend
-CI/CD
+CI/CD actions
