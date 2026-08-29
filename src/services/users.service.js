@@ -1,7 +1,7 @@
-import logger from '#config/logger.js';
-import { db } from '#config/database.js';
-import { users } from '#models/user.model.js';
-import { eq } from 'drizzle-orm';
+import logger from "#config/logger.js";
+import { db } from "#config/database.js";
+import { users } from "#models/user.model.js";
+import { eq } from "drizzle-orm";
 
 // Helper to create errors with specific HTTP status codes
 const createError = (message, statusCode) => {
@@ -23,7 +23,7 @@ export const getAllUsers = async () => {
       })
       .from(users);
   } catch (e) {
-    logger.error('Error fetching all users:', e);
+    logger.error("Error fetching all users:", e);
     throw e;
   }
 };
@@ -44,7 +44,7 @@ export const getUserById = async id => {
       .limit(1);
 
     if (!user) {
-      throw createError('User not found', 404);
+      throw createError("User not found", 404);
     }
 
     return user;
@@ -67,7 +67,7 @@ export const updateUser = async (id, updates) => {
         .where(eq(users.email, updates.email))
         .limit(1);
       if (emailExists) {
-        throw createError('Email is already taken', 409);
+        throw createError("Email is already taken", 409);
       }
     }
 
@@ -90,7 +90,7 @@ export const updateUser = async (id, updates) => {
       });
 
     if (!updatedUser) {
-      throw createError('User not found', 404);
+      throw createError("User not found", 404);
     }
 
     logger.info(`User ${updatedUser.email} updated successfully`);
@@ -117,7 +117,7 @@ export const deleteUser = async id => {
       });
 
     if (!deletedUser) {
-      throw createError('User not found', 404);
+      throw createError("User not found", 404);
     }
 
     logger.info(`User ${deletedUser.email} deleted successfully`);

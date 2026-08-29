@@ -561,3 +561,9 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:23:31 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:23:31.159Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:23:31 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:23:31.214Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:23:31 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:23:31.236Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:31:07 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:31:07.355Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:31:07 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:31:07.382Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:31:07 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:31:07.394Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:33:22 +0000] \"GET /health HTTP/1.1\" 200 72 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:33:22.505Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:33:22 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:33:22.531Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [29/Aug/2026:05:33:22 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api","timestamp":"2026-08-29T05:33:22.538Z"}
